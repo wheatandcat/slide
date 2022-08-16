@@ -80,19 +80,28 @@ The last comment block of each slide will be treated as slide notes. It will be 
   - [Atomic Design Check List](https://atomic-design-checklist.vercel.app/)
 
 
+
 <style>
+a {
+  color: #84b9cb;
+  @apply font-500;
+}
+
+div {
+  color: #4d4c61;
+}
+
+strong {
+  color: #1f3134;
+}
+
 ul {
   padding-left: 1rem;
   margin-top: 0.1rem;
 }
 li {
-  color: #696969;
   @apply font-500;
-  font-size:1.15rem;
-}
-a {
-  color: #84b9cb;
-  @apply font-500;
+  font-size:1rem;
 }
 </style>
 
@@ -192,7 +201,7 @@ li {
  - ローコード開発ツールで、あらゆるデータベースを元にグラフ、チャート、検索フォーム、データ入力などのUIを作成できるサービス
  - 個人の場合では無料で使用できる
    - [Pricing](https://retool.com/pricing/)
- - 表示周りではjsもサポートしているので、柔軟性も高い  
+ - 一部jsもサポートしているので、柔軟性も高い  
 
 <style>
 a {
@@ -260,9 +269,15 @@ li {
 # 今回の実装の概要
 
  - 前提
-  - 無料で利用できる
+   - 無料で利用できる
  - 対象
-
+   - フロントエンドのコードで実装
+ - 使用ツール & サービス
+   - [TypeScript](https://www.typescriptlang.org/)
+   - [zx](https://github.com/google/zx)
+   - [Firestore](https://firebase.google.com/products/firestore)
+   - [GitHub Actions](https://docs.github.com/ja/actions)
+   - [Retool](https://retool.com/)
 
 <style>
 a {
@@ -295,12 +310,19 @@ li {
 
 <br/>
 
- - 実際にプロジェクトに[opentelemetry-go](https://github.com/open-telemetry/opentelemetry-go)を実装したみた。<br/>
- - 構成は以下の通り
-   - プロジェクト: [memoir-backend](https://github.com/wheatandcat/memoir-backend)
-   - フレームワーク: **gqlgen**
-   - ベンダー: [Cloud Trace](https://cloud.google.com/trace?hl=ja)
-      - 最初は[DatadogのAPM](https://www.datadoghq.com/ja/dg/apm/benefits/?utm_source=advertisement&utm_medium=search&utm_campaign=dg-google-japan-apac-apm&utm_keyword=apm%20datadog&utm_matchtype=p&utm_campaignid=9360752627&utm_adgroupid=102783316219)を想定していたが、**Cloud Run For Manager**をサポートしていなかったので😓、Cloud Traceで実装
+ - PR
+   - ①. https://github.com/wheatandcat/memoir/pull/239
+   - ②. https://github.com/wheatandcat/memoir/pull/241
+ - 実装の紹介（Demo）
+   - 基本は以下の記事の通りに実装
+     - https://zenn.dev/ryo_kawamata/articles/create-frontend-dashboard
+   - **zx**の使い方を説明  
+   - [Jest](https://jestjs.io/ja/)からカバレッジを取得する方法
+     - [対象コード](https://github.com/wheatandcat/memoir/blob/5bf012849ccf8fce67d944c21c0858ab0378938d/scripts/send-metrics/coverage.ts#L6-L15)
+     - Jestのカバレッジレポート確認
+   - [Jest](https://jestjs.io/ja/)からテストの実行時間とテスト数を取得する方法
+     - [対象コード](https://github.com/wheatandcat/memoir/blob/40a961f2f26da1e53e4f06aff802a5f1c112125a/scripts/send-metrics/jestResult.ts#L10-L27)
+     - テスト結果をJSON形式で取得するオプションを使用
 
 <style>
 a {
@@ -325,91 +347,18 @@ li {
   font-size:1rem;
 }
 </style>
+
 ---
 
 # 実装してみた②
 
-<br/>
-
- - PR
-   - https://github.com/wheatandcat/memoir-backend/pull/128
- - 以下を解説
-   - gqlgenのトレースのハンドリングの解説
-   - Cloud Traceの出力のデモ
-
-<style>
-a {
-  color: #84b9cb;
-  @apply font-500;
-}
-
-div {
-  color: #4d4c61;
-}
-
-strong {
-  color: #1f3134;
-}
-
-ul {
-  padding-left: 1rem;
-  margin-top: 0.1rem;
-}
-li {
-  @apply font-500;
-  font-size:1rem;
-}
-</style>
-
----
-
-# Cloud Traceを実装してみての感想と課題
-
- - トレース情報が可視化されて、**各APIの処理速度を直感的にわかるようになった**
- - 今回のプロジェクトはAPIの数も少ないのでトレース情報のみでも十分に解析可能だが、以下のようなケースでは**別のアプローチを考える必要がある**
-   - トレース情報が大雑把すぎる。具体的に遅い処理を検知したい
-   - APIや処理数が膨大で漠然と全体的に遅い
-   - ユーザーによって処理が遅い
- - 上記のケースでは[Cloud Profiler](https://cloud.google.com/profiler/docs/about-profiler?hl=ja)が有効なので紹介
-
-<style>
-a {
-  color: #84b9cb;
-  @apply font-500;
-}
-
-div {
-  color: #4d4c61;
-}
-
-strong {
-  color: #1f3134;
-}
-
-ul {
-  padding-left: 1rem;
-  margin-top: 0.1rem;
-}
-li {
-  @apply font-500;
-  font-size:1rem;
-}
-</style>
----
-
-# Cloud Profilerとは
-
- - **Cloud Profiler**は、本番環境のアプリケーションから**CPU 使用率やメモリ割り当てなどの情報を継続的に収集できるサービス**
- - トレースのような大雑把な情報は出力できないが、**ピンポイントにボトルネックになっている処理の検知が行える**
- - 料金は**無料**なので、取り敢えず実装しておいても損は無さそう
-
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-
-[Learn More](https://cloud.google.com/profiler/docs/about-profiler?hl=ja)
+   - Firestoreへのデータ保存の方法
+     - [対象コード](https://github.com/wheatandcat/memoir/blob/40a961f2f26da1e53e4f06aff802a5f1c112125a/scripts/send-metrics/client.ts#L7-L24)
+   - Github Actionsで定期実行
+     - [対象コード](https://github.com/wheatandcat/memoir/blob/40a961f2f26da1e53e4f06aff802a5f1c112125a/.github/workflows/metrics.yml#L2-L6)
+   - あとは、保存しているデータを元に**Retool**でダッシュボードを作成
+     - [ダッシュボード](https://jurassic.retool.com/embedded/public/ca1843e7-ce2b-41ad-92c1-1ca7ff8cd944)
+   - Retoolでのダッシュボード作成のDemo 
 
 <style>
 a {
@@ -435,88 +384,16 @@ li {
 }
 </style>
 
-
----
-
-# 実装してみた
-
-<br/>
-
- - 以下を参考に実装
-   - https://cloud.google.com/profiler/docs/profiling-go?hl=ja
- - 以下を解説
-   - Cloud Profilerのデモ
-     - memoir-backendは処理がシンプル過ぎて、解説向きの情報が無いので以下で解説
-   - 以下を参考に実際の利用方法の解説
-     - [チュートリアル: Go アプリの最適化](https://cloud.google.com/profiler/docs/quickstart-go-app?hl=ja)
-
-<style>
-a {
-  color: #84b9cb;
-  @apply font-500;
-}
-
-div {
-  color: #4d4c61;
-}
-
-strong {
-  color: #1f3134;
-}
-
-ul {
-  padding-left: 1rem;
-  margin-top: 0.1rem;
-}
-li {
-  @apply font-500;
-  font-size:1rem;
-}
-</style>
----
-
-# おまけ
-
-<br/>
-
- - 今回、実装までは行わなかったが、今回紹介した**Cloud Trace**と**Cloud Profiler**などの情報をまとめて、**Cloud Monitoring**でアラートもできそう
-   - https://cloud.google.com/architecture/integrating-monitoring-logging-trace-observability-and-alerting?hl=ja
- - **Cloud Monitoring**の説明は以下を参照
-    - https://cloud.google.com/monitoring/monitor-compute-engine-virtual-machine
-
-<style>
-a {
-  color: #84b9cb;
-  @apply font-500;
-}
-
-div {
-  color: #4d4c61;
-}
-
-strong {
-  color: #1f3134;
-}
-
-ul {
-  padding-left: 1rem;
-  margin-top: 0.1rem;
-}
-li {
-  @apply font-500;
-  font-size:1rem;
-}
-</style>
 ---
 
 # まとめ
 
 <br/>
 
- - **OpenTelemetry**は現状デファクトなので、理解しておいたほうが良さそう
- - パフォーマンス解析のアプローチについて理解できた
- - 早くDatadogのAPMが**Cloud Run For Manager**をサポートして欲しい
-   - GKE構成にすれば使えるけど、個人プロジェクトで、そこまで管理コストをかけたくない 😓
+ - 複雑なShellScriptを書くより、素直に**zx**を使ったほうがスッキリしたコードが書ける
+ - **Retool**は、汎用的に使えるローコード開発ツールなので、積極的に使っていきたい
+ - Retoolはサポートが、かなり充実している散らばっている情報をまとめるのにも、役立ちそう
+   - https://retool.com/integrations
 
 
 <style>
@@ -549,7 +426,7 @@ class: "text-center"
 ---
 
 <div class="text-2xl font-700 text-enter w-full">
-  <div>ご清聴ありがとうございました</div>
+  <div>🎉 ご清聴ありがとうございました 🎉</div>
 </div>
 
 
