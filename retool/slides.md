@@ -107,12 +107,12 @@ li {
 
 ---
 
-# インスパイヤ元の記事紹介
+# インスパイア元の記事紹介
 
 <br/>
 
  - [zx + Datadog + GitHub Actions でフロントエンドのコードベースの健全性を可視化する](https://zenn.dev/ryo_kawamata/articles/create-frontend-dashboard)
- - こちらの記事で紹介していた内容がインスパイヤ元の記事
+ - こちらの記事で紹介していた内容がインスパイア元の記事
  - **Datadog**は、有料サービスなので個人開発では、ちょっと・・・という人向けに、別の方法を紹介
 
 <style>
