@@ -261,8 +261,13 @@ li {
 
 <br/>
 
-- 今までmock作業で実装に時間の掛かったインテグレーションテストを簡単に実装できる状態にしたい
-- また、実際の動作に伴ったシナリオテストを実装できる状態にしたい
+- 仕事のTODOリストは今までslackのDMに書いて運用していた
+  - 雑な運用でリストで書き出して、タスクが終わったら「✔」をつけるのみを運用
+    - （実際にslackを表示）
+  - 他のTODOアプリも試したが無駄にリッチなアプリが多くて続かなかった
+  - ブラウザだと、他の作業で間違って消したりするのでデスクトップアプリで作りたかった
+  - 仕事のTODOだとセンシティブな内容が多かったので、サーバー通信は避けたい
+ - なので、自分用にカスタマイズしたTODOアプリを作ってみた
 
 <style>
 a {
@@ -283,14 +288,17 @@ strong {
 
 ---
 
-# 実装に使用したライブラリ
+#  **Tauri**での開発①
 
 <br/>
+以下でブラウザでローカル環境を起動
 
-- [msw](https://mswjs.io/)
-- [typed-document-node](https://www.the-guild.dev/graphql/codegen/plugins/typescript/typed-document-node)
-- [graphql-codegen-typescript-mock-data](https://github.com/ardeois/graphql-codegen-typescript-mock-data)
-- [testing-library/react-native](https://testing-library.com/)
+```bash
+$ yarn dev
+```
+
+これだとブラウザで起動するので、ブラウザのDevToolも活用できる。
+
 
 <style>
 a {
@@ -323,13 +331,19 @@ li {
 
 ---
 
-# 実装PR
+#  **Tauri**での開発②
 
 <br/>
+以下でデスクトップアプリでローカル環境を起動
 
-- [typed-document-nodeへの移行](https://github.com/wheatandcat/memoir/pull/248)
-- [mswを導入してGraphQLをモックしたテストコードを書く①](https://github.com/wheatandcat/memoir/pull/249)
-- [mswを導入してGraphQLをモックしたテストコードを書く②](https://github.com/wheatandcat/memoir/pull/251)
+```bash
+$ yarn tauri dev
+```
+
+これだとデスクトップアプリの状態で起動するので、ネイティブの機能をデバッグする場合は、<br/>こちらで起動。<br/>
+<br/>
+ホットリロードも有効なので、快適に開発できる。
+
 
 <style>
 a {
@@ -362,15 +376,20 @@ li {
 
 ---
 
-# 実装してみた ①
+#  **Tauri**での開発③
 
 <br/>
+以下でデスクトップアプリをビルド
 
-- まずは、[typescript-react-apollo](https://www.the-guild.dev/graphql/codegen/plugins/typescript/typescript-react-apollo)→[typed-document-node](https://www.the-guild.dev/graphql/codegen/plugins/typescript/typed-document-node)移行を実装
-- PR: [typed-document-nodeへの移行](https://github.com/wheatandcat/memoir/pull/248)
-- 実装の紹介
-  - こちら、次のPRで使用する[graphql-codegen-typescript-mock-data](https://github.com/ardeois/graphql-codegen-typescript-mock-data)を使用しやすくするために移行
-  - **typed-document-node**は特定のGraphQLクライアントに依存せずにGraphQLのtypeを自動生成してくれるcodegenのプラグイン
+```bash
+$ yarn tauri build
+```
+
+デフォルトだとhostのデバイの環境で起動できるアプリにビルド。
+<br/>
+
+以下のオプションで各バイナリに変換可能。
+ - [binary options](https://tauri.app/v1/guides/building/macos#binary-targets)
 
 <style>
 a {
@@ -380,6 +399,11 @@ a {
 
 div {
   color: #4d4c61;
+}
+
+span {
+  font-size:0.5rem;
+  line-height: 0.5rem !important;
 }
 
 strong {
@@ -398,21 +422,19 @@ li {
 
 ---
 
-# 実装してみた ②
+# frontendの開発
 
 <br/>
 
-- 次に、mswとgraphql-codegen-typescript-mock-dataを導入
-- PR: [mswを導入してGraphQLをモックしたテストコードを書く①](https://github.com/wheatandcat/memoir/pull/249)
-- 実装の紹介
-  - **graphql-codegen-typescript-mock-data**は、GraphQLのSchema情報からダミーデータを生成してくれるライブラリ
-  - これを利用することでmockデータを保守を自動生成で補うようにする
-    - [参考コード](https://github.com/wheatandcat/memoir/blob/92684315ddf5da1a2cdebf866d425110b22ca3c5/src/mocks/handler.ts)
-  - mswは以下の部分でテスト時に起動させる
-    - [参考コード](https://github.com/wheatandcat/memoir/blob/92684315ddf5da1a2cdebf866d425110b22ca3c5/setupTests.js#L10-L18)
-  - テストは以下の通りに記載
-    - [参考コード](https://github.com/wheatandcat/memoir/blob/92684315ddf5da1a2cdebf866d425110b22ca3c5/src/components/pages/ItemDetail/__tests__/Connected.test.tsx)
-  
+- frontendは**React**で作成
+  - [コード](https://github.com/wheatandcat/todo/blob/187301f71db9c572382ab3b73bb6a0bf80d1eb68/src/App.tsx#L1)
+- Markdownの表示は[markdown-to-jsx](https://probablyup.com/markdown-to-jsx/)を使用
+  - [コード](https://github.com/wheatandcat/todo/blob/187301f71db9c572382ab3b73bb6a0bf80d1eb68/src/components/organisms/Editor.tsx#L1)
+- Markdownのparseは[remark-parse](https://www.npmjs.com/package/remark-parse)を使用
+  - checkbox部分のパースする自前で作成
+  - [コード](https://github.com/wheatandcat/todo/blob/187301f71db9c572382ab3b73bb6a0bf80d1eb68/src/lib/task.ts#L11-L52)
+
+
 <style>
 a {
   color: #84b9cb;
@@ -421,6 +443,11 @@ a {
 
 div {
   color: #4d4c61;
+}
+
+span {
+  font-size:0.5rem;
+  line-height: 0.5rem !important;
 }
 
 strong {
@@ -439,19 +466,20 @@ li {
 
 ---
 
-# 実装してみた ③
+# ネイティブ機能の開発
 
 <br/>
 
-- 最後に、前のPRからの追加で、より正確なシナリオテストを実装
-- PR: [mswを導入してGraphQLをモックしたテストコードを書く②](https://github.com/wheatandcat/memoir/pull/251)
-- 実装の紹介
-  - アイテムの更新のシナリオテストを追加
-    - [参考コード](https://github.com/wheatandcat/memoir/blob/638e171636b5cb40e8c781181a4cf0cb11fc581b/src/components/pages/ItemDetail/__tests__/Connected.test.tsx)
-  - [testing-library/react-native](https://testing-library.com/)を使用して各入力を設定
-    - [参考コード](https://github.com/wheatandcat/memoir/blob/638e171636b5cb40e8c781181a4cf0cb11fc581b/src/components/pages/ItemDetail/__tests__/Connected.test.tsx#L94-L105)
-  - 入力に設定した値と更新のAPI時に設定された値と**GraphQLのvariables**を比較して一致しているかテスト
-    - [参考コード](https://github.com/wheatandcat/memoir/blob/638e171636b5cb40e8c781181a4cf0cb11fc581b/src/components/pages/ItemDetail/__tests__/Connected.test.tsx#L107-L116)
+- アプリのmenuは以下で作成
+  - [コード](https://github.com/wheatandcat/todo/blob/c671fa2804b11c748a73a0e514a33918d7a4221e/src-tauri/src/main.rs#L15-L50)
+  - 詳細は、[こちら](https://tauri.app/v1/guides/features/menu/)
+- menuからfrontend側の通信は、以下のように作成
+  - ネイティブから送信
+    - [コード](https://github.com/wheatandcat/todo/blob/c671fa2804b11c748a73a0e514a33918d7a4221e/src-tauri/src/main.rs#L38-L39)
+  - frontendで受け取り
+    - [コード](https://github.com/wheatandcat/todo/blob/187301f71db9c572382ab3b73bb6a0bf80d1eb68/src/App.tsx#L47-L51) 
+    - frontend側から、Tauri APIを使用してネイティブの機能も活用可能
+      - [@tauri-apps/api | Tauri Apps](https://tauri.app/v1/api/js/)
 
 <style>
 a {
@@ -461,6 +489,11 @@ a {
 
 div {
   color: #4d4c61;
+}
+
+span {
+  font-size:0.5rem;
+  line-height: 0.5rem !important;
 }
 
 strong {
@@ -483,9 +516,11 @@ li {
 
 <br/>
 
-- [msw](https://mswjs.io/)を使えば気軽にインテグレーションテストを書けて、かなり良い。
-- graphql-codegen周りの自動生成周りのツールと相性が良い
-- テストから仕様が把握できるコードにしやすくなった
+- [Tauri](https://tauri.app/)での開発は快適
+- React経験者なら、**ほぼ学習コスト無しで作れる**
+- ネイティブ機能の部分が[Rust](https://www.rust-lang.org/ja/)なので書きやすい
+  - ビルドが通れば、ほぼOKな感じの安心感がある
+- ちゃんと開発できたらApple/Windowsストアで公開する予定
 
 <style>
 a {
