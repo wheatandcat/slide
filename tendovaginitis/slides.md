@@ -1,0 +1,513 @@
+---
+# try also 'default' to start simple
+theme: default
+# random image from a curated Unsplash collection by Anthony
+# like them? see https://unsplash.com/collections/94734566/slidev
+background: https://source.unsplash.com/collection/94734566/1920x1080
+# apply any windi css classes to the current slide
+class: "text-center"
+# https://sli.dev/custom/highlighters.html
+highlighter: shiki
+# show line numbers in code blocks
+lineNumbers: false
+# some information about the slides, markdown enabled
+info: |
+  ## 右手が腱鞘炎になったエンジニアを支える技術
+# persist drawings in exports and build
+drawings:
+  persist: false
+title:  右手が腱鞘炎になったエンジニアを支える技術
+layout: intro
+colorSchema: "light"
+---
+
+## 右手が腱鞘炎になったエンジニアを支える技術
+
+<div class="flex justify-center">
+  <img
+    class="w-30 pt-2"
+    src="/logo.svg"
+  />
+</div>
+
+<div class="pt-12">
+  <span @click="$slidev.nav.next" class="px-2 py-1 rounded cursor-pointer" hover="bg-white bg-opacity-10">
+    Press Space for next page <carbon:arrow-right class="inline"/>
+  </span>
+</div>
+
+<div class="abs-br m-6 flex gap-2">
+  <button @click="$slidev.nav.openInEditor()" title="Open in Editor" class="text-xl icon-btn opacity-50 !border-none !hover:text-white">
+    <carbon:edit />
+  </button>
+  <a href="https://github.com/slidevjs/slidev" target="_blank" alt="GitHub"
+    class="text-xl icon-btn opacity-50 !border-none !hover:text-white">
+    <carbon-logo-github />
+  </a>
+</div>
+
+<!--
+The last comment block of each slide will be treated as slide notes. It will be visible and editable in Presenter Mode along with the slide. [Read more in the docs](https://sli.dev/guide/syntax.html#notes)
+-->
+
+---
+
+<div class="flex pb-5">
+  <div class="px-5">
+    <div class="rounded-full bg-white w-30 h-30 overflow-hidden border-2 border-black border-dotted border-opacity-20">
+      <img
+        class="w-40 pt-2"
+        src="/account.png"
+      />
+    </div>
+  </div>
+  <div class="mt-11">
+    <h2><b>自己紹介</b></h2>
+  </div>
+</div>
+<br />
+<br/>
+
+- 📝 飯野陽平（[wheatandcat](https://github.com/wheatandcat)）
+- 🏢 フリーランスエンジニア（シェアフル株式会社CTO）
+- 💻 Blog: https://www.wheatandcat.me/
+- 🛠 今までに作ったもの
+  - [memoir](https://memoir-lp-mvbeacmwe-wheatandcat.vercel.app/)
+  - [ペペロミア](https://peperomia.app/)
+  - [Atomic Design Check List](https://atomic-design-checklist.vercel.app/)
+
+<style>
+ul {
+  padding-left: 1rem;
+  margin-top: 0.1rem;
+}
+li {
+  color: #696969;
+  @apply font-500;
+  font-size:1.15rem;
+}
+a {
+  color: #84b9cb;
+  @apply font-500;
+}
+</style>
+
+
+---
+
+# **腱鞘炎**とは
+
+<br/>
+
+<div class="flex w-full">
+<div class="w-120">
+
+
+- 筋肉と骨を結びつけているものが**腱**
+- **腱鞘**は腱が骨から離れないように押さえつける組織
+- 指を動かすことで、**腱**と**腱鞘**が擦れて炎症が起きてしまうのが**腱鞘炎**
+- なので、指を曲げたり、手首を動かしたりすると**激痛が走る**
+
+</div>
+
+<div>
+  <img
+    class="w-50 pt-10 pl-10"
+    src="/img_001.png"
+  />
+</div>
+</div>
+
+<style>
+a {
+  color: #84b9cb;
+  @apply font-500;
+}
+
+p {
+  margin: 1rem !important;
+}
+
+div {
+  color: #4d4c61;
+}
+
+span {
+  font-size:0.5rem;
+  line-height: 0.5rem !important;
+}
+
+strong {
+  color: #1f3134;
+}
+
+ul {
+  padding-left: 1rem;
+  margin-top: 0.1rem;
+}
+
+li {
+  @apply font-500;
+  margin-top: 0.25rem;
+  
+}
+</style>
+
+---
+
+# 腱鞘炎になると、どうなるのか？
+
+<br/>
+
+<br/>
+
+<div class="flex w-full">
+<div class="w-120">
+
+
+- キーボードを打鍵すると激痛
+- マウスを動かすと激痛
+- 炎症なので、動かせば動かすほど酷くなるので腕を使わない以外の治療法が無い
+- でも、右手を使わずに作業するのは難しい
+
+</div>
+
+<div>
+  <img
+    class="w-50 pt-10 pl-10"
+    src="/img_002.svg"
+  />
+</div>
+</div>
+
+
+<style>
+a {
+  color: #84b9cb;
+  @apply font-500;
+}
+
+p {
+  margin: 1rem !important;
+}
+
+div {
+  color: #4d4c61;
+}
+
+span {
+  font-size:0.5rem;
+  line-height: 0.5rem !important;
+}
+
+strong {
+  color: #1f3134;
+}
+
+ul {
+  padding-left: 1rem;
+  margin-top: 0.1rem;
+}
+
+li {
+  @apply font-500;
+}
+</style>
+
+
+---
+layout: center
+class: "text-center"
+---
+
+<div class="flex justify-items-center items-center flex-col"> 
+  <div class="text-2xl font-700 text-enter w-full pt-10">
+    <div>どうすれば、腱鞘炎の負荷を下げて<br/>作業ができるか研究してみた</div>
+  </div>
+
+  <img
+    class="w-70"
+    src="/img_003.svg"
+  />
+</div>
+
+
+<style>
+.main {
+  display: flex;
+  height: 80%;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  color: #46AE35;
+}
+</style>
+
+
+---
+layout: image
+image: '/before.png'
+---
+# Before セットアップ
+
+
+
+<style>
+a {
+  color: #84b9cb;
+  @apply font-500;
+}
+
+p {
+  margin: 1rem !important;
+}
+
+div {
+  color: #4d4c61;
+}
+
+span {
+  font-size:0.5rem;
+  line-height: 0.5rem !important;
+}
+
+strong {
+  color: #1f3134;
+}
+
+ul {
+  padding-left: 1rem;
+  margin-top: 0.1rem;
+}
+
+li {
+  @apply font-500;
+}
+</style>
+
+
+---
+layout: image-right
+image: '/before.png'
+---
+# Before セットアップ
+
+<br/>
+
+ - キーボード
+   - Magic Keyboard
+ - マウス
+   - MXV1s MX Vertical (ロジクール)
+ - パームレスト有り
+
+<v-click>
+<div class="red">
+
+→ 腱鞘炎になって分かったこと。
+ - Magic Keyboardはストロークが浅いので腱鞘炎だとめっちゃ痛い
+ - エレゴノミクス系のマウスは親指の腱鞘炎だと痛い
+ - また左手で使用できない
+
+</div>
+</v-click>
+
+
+<style>
+a {
+  color: #84b9cb;
+  @apply font-500;
+}
+
+p {
+  margin: 1rem !important;
+}
+
+div {
+  color: #4d4c61;
+}
+
+.red {
+  color: rgb(239 68 68);
+}
+
+span {
+  font-size:0.5rem;
+  line-height: 0.5rem !important;
+}
+
+strong {
+  color: #1f3134;
+}
+
+ul {
+  padding-left: 1rem;
+  margin-top: 0.1rem;
+}
+
+li {
+  @apply font-500;
+}
+</style>
+
+
+---
+layout: center
+class: "text-center"
+---
+
+<div class="flex justify-items-center items-center flex-col"> 
+  <div class="text-2xl font-700 text-enter w-full pt-10">
+    <div>Version 1</div>
+    <div>右腕が、ほぼ使えない時</div>
+  </div>
+  <br/>
+
+  <img
+    class="w-40"
+    src="/img_004.svg"
+  />
+</div>
+
+
+<style>
+.main {
+  display: flex;
+  height: 80%;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  color: #46AE35;
+}
+</style>
+
+---
+layout: image
+image: '/version1.png'
+---
+# Version 1
+
+
+---
+layout: image-right
+image: '/macair.png'
+---
+# Version 1
+
+<br/>
+
+ - **M2 MacBook Air**
+   - 腱鞘炎になるとマウス移動が大きくなれば、なるほどキツくなる
+   - 小さい画面で作業できるAirが作業しやすかった
+   - 2画面欲しい場合は[ユニバーサルコントロール](https://support.apple.com/ja-jp/HT212757)を使用してiMacに接続してSlackのみ表示させるで対応
+ - **日本語は基本音声入力で対応**
+   - 精度が高いので、現状もslackの返信等で使用している
+   - ただ、英語と日本語が交じると意味不明な文章になるので単語には注意が必要
+
+
+<style>
+a {
+  color: #84b9cb;
+  @apply font-500;
+}
+
+p {
+  margin: 1rem !important;
+}
+
+div {
+  color: #4d4c61;
+}
+
+span {
+  font-size:0.5rem;
+  line-height: 0.5rem !important;
+}
+
+strong {
+  color: #1f3134;
+}
+
+ul {
+  padding-left: 1rem;
+  margin-top: 0.1rem;
+  font-size:0.8rem;
+}
+
+li {
+  @apply font-500;
+}
+</style>
+
+
+---
+layout: image-right
+image: '/pedal.png'
+---
+# Version 1
+
+<br/>
+
+ - **Stream Deck Pedal**
+   - フットペダルデバイス
+   - 専用アプリで3ボタンのアクションを設定できる
+   - かなり汎用的に設定が可能
+   - 詳しくは以下を参照
+   - https://www.elgato.com/ja/stream-deck-pedal
+ - 基本1画面なので[Mission Control](https://support.apple.com/ja-jp/HT204100)をペダルに設定して操作
+   - 腱鞘炎だと右手が使えないのでショートカットが押せないのと、3本指スワイプは手首の負担がでかいので、かなり助かった 👌
+   - 現在も普通に使用中
+
+<style>
+a {
+  color: #84b9cb;
+  @apply font-500;
+}
+
+p {
+  margin: 1rem !important;
+}
+
+div {
+  color: #4d4c61;
+}
+
+span {
+  font-size:0.5rem;
+  line-height: 0.5rem !important;
+}
+
+strong {
+  color: #1f3134;
+}
+
+ul {
+  padding-left: 1rem;
+  margin-top: 0.1rem;
+  font-size:0.8rem;
+}
+
+li {
+  @apply font-500;
+}
+</style>
+
+
+---
+layout: center
+class: "text-center"
+---
+
+<div class="text-2xl font-700 text-enter w-full">
+  <div>ご清聴ありがとうございました</div>
+</div>
+
+<style>
+.main {
+  display: flex;
+  height: 80%;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  color: #46AE35;
+}
+</style>
