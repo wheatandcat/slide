@@ -167,7 +167,7 @@ li {
 
 - キーボードを打鍵すると激痛
 - マウスを動かすと激痛
-- 炎症なので、動かせば動かすほど酷くなるので腕を使わない以外の治療法が無い
+- 炎症なので、動かすほど酷くなるので腕を使わないことが一番の回復方法
 - でも、右手を使わずに作業するのは難しい
 
 </div>
@@ -306,7 +306,9 @@ image: '/before.png'
 → 腱鞘炎になって分かったこと。
  - Magic Keyboardはストロークが浅いので腱鞘炎だとめっちゃ痛い
  - エレゴノミクス系のマウスは親指の腱鞘炎だと痛い
- - また左手で使用できない
+ - マウス自体も重めなので手首に負担がかかる
+ - ダブルクリックが辛い
+ - 左手で使用できない
 
 </div>
 </v-click>
@@ -342,6 +344,7 @@ strong {
 ul {
   padding-left: 1rem;
   margin-top: 0.1rem;
+  font-size:0.9rem;
 }
 
 li {
@@ -398,10 +401,10 @@ image: '/macair.png'
  - **M2 MacBook Air**
    - 腱鞘炎になるとカーソル移動が大きくなれば、なるほどキツくなる
    - 小さい画面で作業できるAirが作業しやすかった
-   - 2画面欲しい場合は[ユニバーサルコントロール](https://support.apple.com/ja-jp/HT212757)を使用してiMacに接続してSlackのみ表示させるで対応
+   - 2画面欲しい場合は[ユニバーサルコントロール](https://support.apple.com/ja-jp/HT212757)を使用してiMacに接続してSlackのみ表示で対応
  - **トラックパッドは左手で操作**
    - 基本左手で操作
-   - ただドラックや範囲指定は両手必要なので注意
+   - ただドラックや範囲指定は両手が必要なので注意
  - **日本語は基本音声入力で対応**
    - 精度が高いので、現状もslackの返信等で使用している
    - ただ、英語と日本語が交じると意味不明な文章になるので単語には注意が必要
@@ -457,7 +460,7 @@ image: '/pedal.png'
    - https://www.elgato.com/ja/stream-deck-pedal
  - 基本1画面なので[Mission Control](https://support.apple.com/ja-jp/HT204100)をペダルに設定して操作
    - 腱鞘炎だと右手が使えないのでショートカットが押せないのと、3本指スワイプは手首の負担がでかいので、かなり助かった 👌
-   - 現在も普通に使用中
+   - 現在も普通に使用しているくらい気に入っている
 
 <style>
 a {
@@ -529,27 +532,116 @@ layout: image
 image: '/version2.png'
 ---
 # Version 2
-
+z
 
 ---
 layout: image-right
-image: '/version2.png'
+image: '/mk2.png'
 ---
 # Version 2
 
 <br/>
 
- - **REALFORCE for Mac**
-   - キーストロークが深く、打鍵が軽いので腱鞘炎でも痛くない 👍
- - **Magic Trackpad**
-   - iMacでも左手で操作できるように使用
-   - ただドラックや範囲指定は両手必要なので注意
-   - 使用感は正直Mac Airの方が良い気がする
- - 以下のソフトを使ってカスタマイズして操作を軽減
-   - [カーソルセンス](https://plentycom.jp/cursorsense/)
-     - できるだけ最小限の動作でカーソルを動かしたいので移動のスピードをカスタマイズ
-   - [BetterTouchTool](https://folivora.ai/)
-     - Trackpadの四隅のクリックにアクションを設定したり、4本指スワイプにアクションを設定できる
+ - **Stream Deck MK.2**
+   - さまざまなアクションを設定できる左手デバイス
+   - 物理ボタンの背景がディスプレイになっていて自由にカスタマイズができる
+   - これを使うことでデュアルデスプレイの右側はカーソルを移動させずに操作ができる
+    - Slack、Todoなどのアプリを表示
+    - 組み合わせでChromeのタブ移動もできる
+    - [Alfred](https://www.alfredapp.com/)や[Raycast](https://www.raycast.com/)と組み合わせれば基本どんな操作でも可能
+ - 詳しくは、こちらを参照
+   - https://www.elgato.com/ja/stream-deck-mk2
+
+<style>
+a {
+  color: #84b9cb;
+  @apply font-500;
+}
+
+p {
+  margin: 1rem !important;
+}
+
+div {
+  color: #4d4c61;
+}
+
+span {
+  font-size:0.5rem;
+  line-height: 0.5rem !important;
+}
+
+strong {
+  color: #1f3134;
+}
+
+ul {
+  padding-left: 1rem;
+  margin-top: 0.1rem;
+  font-size:0.8rem;
+}
+
+li {
+  @apply font-500;
+}
+</style>
+
+---
+layout: center
+class: "text-center"
+---
+
+<div class="flex justify-items-center items-center flex-col"> 
+  <div class="text-2xl font-700 text-enter w-full pt-10">
+    <div>Version Future（未来）</div>
+    <div>今後のための実験的な試み</div>
+  </div>
+  <br/>
+
+  <img
+    class="w-60"
+    src="/img_006.svg"
+  />
+</div>
+
+
+<style>
+.main {
+  display: flex;
+  height: 80%;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  color: #46AE35;
+}
+</style>
+
+
+---
+layout: image
+image: '/version3.png'
+---
+# Version Future
+
+
+---
+layout: image-right
+image: '/ergodox.png'
+---
+# Version Future
+
+<br/>
+
+ - **ErgoDox EZ**
+   - セパレート式メカニカルキーボード
+   - 両腕のホームポジションが固定されないので胸を張った状態で打鍵できるので肩が凝りづらい
+   - ストロークも深く、打鍵も軽い
+   - キーボードの配置は自由にカスタマイズ可能
+   - 購入時にいろいろ好みにカスタマイズが可能
+   - ただ普通のキーボードとは大分打ち方がかわるので練習が必要
+   - 現在は仕事以外で使用して練習中 🏃
+ - 詳しくは、こちらを参照
+   - https://ergodox-ez.com/
 
 <style>
 a {
@@ -588,21 +680,75 @@ li {
 
 ---
 layout: image-right
-image: '/mk2.png'
+image: '/kensington.png'
 ---
-# Version 2
+# Version Future
 
 <br/>
 
- - **Stream Deck MK.2**
-   - さまざまなアクションを設定できる左手デバイス
-   - 物理ボタンの背景がディスプレイになっていて自由にカスタマイズができる
-   - これを使うことでデュアルデスプレイの右側はカーソルを移動させずに操作ができる
-    - Slack、Todoなどのアプリを表示
-    - 組み合わせでChromeのタブ移動もできる
-    - [Alfred](https://www.alfredapp.com/)や[Raycast](https://www.raycast.com/)と組み合わせれば基本どんな操作でも可能
+ - **Kensington ExpertMouse**
+   - トラックボールマウス
+   - トラックボールをコロコロしてカーソル移動
+   - 腕への負担が、ほぼ掛からない
+   - ソフト側で⌘を押しながら移動時でカーソルの移動速度を変えられるので、一気に移動したい場合と細かく動かしたい場合の両方の動作に対応できる
+   - ボタンが4つあるので、ダブルクリックなども割り当てられる
+   - スクロールはトラックボールの周りのダイヤルをひねると移動
+   - 腱鞘炎対策のマウスでは一番オススメ
  - 詳しくは、こちらを参照
-   - https://www.elgato.com/ja/stream-deck-mk2
+   - https://ergodox-ez.com/
+
+<style>
+a {
+  color: #84b9cb;
+  @apply font-500;
+}
+
+p {
+  margin: 1rem !important;
+}
+
+div {
+  color: #4d4c61;
+}
+
+span {
+  font-size:0.5rem;
+  line-height: 0.5rem !important;
+}
+
+strong {
+  color: #1f3134;
+}
+
+ul {
+  padding-left: 1rem;
+  margin-top: 0.1rem;
+  font-size:0.8rem;
+}
+
+li {
+  @apply font-500;
+}
+</style>
+
+
+---
+layout: image-right
+image: '/tobii.png'
+---
+# Version Future
+
+<br/>
+
+ - **Tobii Eye Tracker 5**
+   - 今回紹介するガジェットで一番未来 
+   - 視線トラッカーデバイス
+   - 基本的にはゲーム用途のデバイスだが、[Talon](https://talonvoice.com/)というプロジェクトと組み合わせることでフリーハンドでPCが操作可能になる
+   - 仕事で使用するのは流石に無理そうだけど、**Talon**のSpeech APIも使いこなせれば、完全フリーハンドでネットサーフィンくらいはできるようになりそう
+   - ただ、Speech APIは発音が厳しいのでネイティブじゅないと辛そう 😓
+   - 一応デモをやってみる
+ - 詳しくは、こちらを参照
+  - https://ergodox-ez.com/
 
 <style>
 a {
