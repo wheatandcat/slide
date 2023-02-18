@@ -396,13 +396,15 @@ image: '/macair.png'
 <br/>
 
  - **M2 MacBook Air**
-   - 腱鞘炎になるとマウス移動が大きくなれば、なるほどキツくなる
+   - 腱鞘炎になるとカーソル移動が大きくなれば、なるほどキツくなる
    - 小さい画面で作業できるAirが作業しやすかった
    - 2画面欲しい場合は[ユニバーサルコントロール](https://support.apple.com/ja-jp/HT212757)を使用してiMacに接続してSlackのみ表示させるで対応
+ - **トラックパッドは左手で操作**
+   - 基本左手で操作
+   - ただドラックや範囲指定は両手必要なので注意
  - **日本語は基本音声入力で対応**
    - 精度が高いので、現状もslackの返信等で使用している
    - ただ、英語と日本語が交じると意味不明な文章になるので単語には注意が必要
-
 
 <style>
 a {
@@ -467,6 +469,98 @@ p {
   margin: 1rem !important;
 }
 
+div {                       
+  color: #4d4c61;
+}
+
+span {
+  font-size:0.5rem;
+  line-height: 0.5rem !important;
+}
+
+strong {
+  color: #1f3134;
+}
+
+ul {
+  padding-left: 1rem;
+  margin-top: 0.1rem;
+  font-size:0.8rem;
+}
+
+li {
+  @apply font-500;
+}
+</style>
+
+
+---
+layout: center
+class: "text-center"
+---
+
+<div class="flex justify-items-center items-center flex-col"> 
+  <div class="text-2xl font-700 text-enter w-full pt-10">
+    <div>Version 2（現状）</div>
+    <div>右腕に負荷を軽減して作業</div>
+  </div>
+  <br/>
+
+  <img
+    class="w-20"
+    src="/img_005.svg"
+  />
+</div>
+
+
+<style>
+.main {
+  display: flex;
+  height: 80%;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  color: #46AE35;
+}
+</style>
+
+---
+layout: image
+image: '/version2.png'
+---
+# Version 2
+
+
+---
+layout: image-right
+image: '/version2.png'
+---
+# Version 2
+
+<br/>
+
+ - **REALFORCE for Mac**
+   - キーストロークが深く、打鍵が軽いので腱鞘炎でも痛くない 👍
+ - **Magic Trackpad**
+   - iMacでも左手で操作できるように使用
+   - ただドラックや範囲指定は両手必要なので注意
+   - 使用感は正直Mac Airの方が良い気がする
+ - 以下のソフトを使ってカスタマイズして操作を軽減
+   - [カーソルセンス](https://plentycom.jp/cursorsense/)
+     - できるだけ最小限の動作でカーソルを動かしたいので移動のスピードをカスタマイズ
+   - [BetterTouchTool](https://folivora.ai/)
+     - Trackpadの四隅のクリックにアクションを設定したり、4本指スワイプにアクションを設定できる
+
+<style>
+a {
+  color: #84b9cb;
+  @apply font-500;
+}
+
+p {
+  margin: 1rem !important;
+}
+
 div {
   color: #4d4c61;
 }
@@ -491,6 +585,58 @@ li {
 }
 </style>
 
+
+---
+layout: image-right
+image: '/mk2.png'
+---
+# Version 2
+
+<br/>
+
+ - **Stream Deck MK.2**
+   - さまざまなアクションを設定できる左手デバイス
+   - 物理ボタンの背景がディスプレイになっていて自由にカスタマイズができる
+   - これを使うことでデュアルデスプレイの右側はカーソルを移動させずに操作ができる
+    - Slack、Todoなどのアプリを表示
+    - 組み合わせでChromeのタブ移動もできる
+    - [Alfred](https://www.alfredapp.com/)や[Raycast](https://www.raycast.com/)と組み合わせれば基本どんな操作でも可能
+ - 詳しくは、こちらを参照
+   - https://www.elgato.com/ja/stream-deck-mk2
+
+<style>
+a {
+  color: #84b9cb;
+  @apply font-500;
+}
+
+p {
+  margin: 1rem !important;
+}
+
+div {
+  color: #4d4c61;
+}
+
+span {
+  font-size:0.5rem;
+  line-height: 0.5rem !important;
+}
+
+strong {
+  color: #1f3134;
+}
+
+ul {
+  padding-left: 1rem;
+  margin-top: 0.1rem;
+  font-size:0.8rem;
+}
+
+li {
+  @apply font-500;
+}
+</style>
 
 ---
 layout: center
