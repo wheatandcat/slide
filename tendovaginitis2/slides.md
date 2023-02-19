@@ -932,7 +932,7 @@ class: "text-center"
 </div>
 
 <style>
-.main   
+.main {
   display: flex;
   height: 80%;
   width: 100%;
