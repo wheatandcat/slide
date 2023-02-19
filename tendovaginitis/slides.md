@@ -407,7 +407,7 @@ image: '/macair.png'
    - ただドラックや範囲指定は両手が必要なので注意
  - **日本語は基本音声入力で対応**
    - 精度が高いので、現状もslackの返信等で使用している
-   - ただ、英語と日本語が交じると意味不明な文章になるので単語には注意が必要
+   - ただ、英語と日本語が交じると意味不明な文章になるので使用する単語に注意が必要
 
 <style>
 a {
@@ -532,7 +532,63 @@ layout: image
 image: '/version2.png'
 ---
 # Version 2
-z
+
+
+---
+layout: image-right
+image: '/version2.png'
+---
+# Version 2
+
+<br/>
+
+ - **REALFORCE for Mac**
+   - キーストロークが深く、打鍵が軽いので腱鞘炎でも痛くない 👍
+ - **Magic Trackpad**
+   - iMacでも左手で操作できるように使用
+   - ただドラックや範囲指定は両手必要なので注意
+   - 使用感は正直Mac Airの方が良い気がする
+ - 以下のソフトを使ってカスタマイズして操作を軽減
+   - [カーソルセンス](https://plentycom.jp/cursorsense/)
+     - できるだけ最小限の動作でカーソルを動かしたいので移動のスピードをカスタマイズ
+   - [BetterTouchTool](https://folivora.ai/)
+     - Trackpadの四隅のクリックにアクションを設定したり、4本指スワイプにアクションを設定できる
+
+<style>
+a {
+  color: #84b9cb;
+  @apply font-500;
+}
+
+p {
+  margin: 1rem !important;
+}
+
+div {
+  color: #4d4c61;
+}
+
+span {
+  font-size:0.5rem;
+  line-height: 0.5rem !important;
+}
+
+strong {
+  color: #1f3134;
+}
+
+ul {
+  padding-left: 1rem;
+  margin-top: 0.1rem;
+  font-size:0.8rem;
+}
+
+li {
+  @apply font-500;
+}
+</style>
+
+
 
 ---
 layout: image-right
@@ -748,7 +804,7 @@ image: '/tobii.png'
    - ただ、Speech APIは発音が厳しいのでネイティブじゅないと辛そう 😓
    - 一応デモをやってみる
  - 詳しくは、こちらを参照
-  - https://ergodox-ez.com/
+  - 
 
 <style>
 a {
