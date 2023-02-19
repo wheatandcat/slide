@@ -804,7 +804,8 @@ image: '/tobii.png'
    - ただ、Speech APIは発音が厳しいのでネイティブじゅないと辛そう 😓
    - 一応デモをやってみる
  - 詳しくは、こちらを参照
-  - 
+   - https://gaming.tobii.com/product/eye-tracker-5/
+   - https://www.joshwcomeau.com/blog/hands-free-coding/
 
 <style>
 a {
@@ -840,6 +841,87 @@ li {
 }
 </style>
 
+
+---
+layout: center
+class: "text-center"
+---
+
+<div class="flex justify-items-center items-center flex-col"> 
+  <div class="text-2xl font-700 text-enter w-full pt-10">
+    <div>まとめ</div>
+  </div>
+  <br/>
+
+  <img
+    class="w-40"
+    src="/img_007.svg"
+  />
+</div>
+
+
+<style>
+.main {
+  display: flex;
+  height: 80%;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  color: #46AE35;
+}
+</style>
+
+
+---
+
+# まとめ
+
+- 腱鞘炎になると仕事ができないので気をつける
+- マウスやキーボード、その他のガジェットで対策はできる
+- カーソル移動のデバイスは個人的には以下の評価
+  - ■ 精密な動作
+    - Trackpad < トラックボール < マウス
+  - ■ ドラック & 範囲指定のしやすさ
+    - Trackpad < トラックボール < マウス
+  - ■ カスタマイズ性
+    - マウス < トラックボール < Trackpad
+  - ■ 腕の負担の低さ
+    - マウス < Trackpad < トラックボール
+<style>
+a {
+  color: #84b9cb;
+  @apply font-500;
+}
+
+p {
+  margin: 1rem !important;
+}
+
+div {
+  color: #4d4c61;
+}
+
+span {
+  font-size:0.9rem;
+  line-height: 0.5rem !important;
+}
+
+strong {
+  color: #1f3134;
+}
+
+ul {
+  padding-left: 1rem;
+  margin-top: 0.1rem;
+  font-size:1rem;
+}
+
+li {
+  @apply font-500;
+}
+</style>
+
+
 ---
 layout: center
 class: "text-center"
@@ -850,7 +932,7 @@ class: "text-center"
 </div>
 
 <style>
-.main {
+.main   
   display: flex;
   height: 80%;
   width: 100%;
