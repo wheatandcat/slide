@@ -326,7 +326,6 @@ div {
 }
 
 span {
-  font-size:0.25rem;
   line-height: 0.5rem !important;
 }
 
@@ -371,7 +370,6 @@ div {
 }
 
 span {
-  font-size:0.25rem;
   line-height: 0.5rem !important;
 }
 
@@ -487,7 +485,6 @@ div {
 }
 
 span {
-  font-size:0.2rem;
   line-height: 0.5rem !important;
 }
 
@@ -501,8 +498,7 @@ ul {
 }
 
 pre {
-  font-size:0.2rem;
-  line-height: 0.8rem !important;
+  line-height: 0.9rem !important;
 }
 
 li {
@@ -542,7 +538,6 @@ div {
 }
 
 span {
-  font-size:0.2rem;
   line-height: 0.5rem !important;
 }
 
