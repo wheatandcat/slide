@@ -1,23 +1,19 @@
 ---
-theme: seriph
-background:
+theme: ./theme
 class: text-center
+background:
 highlighter: shiki
 lineNumbers: false
 info: |
   ## Supabaseの紹介
-  Learn more at [https://github.com/wheatandcat/slide)
 drawings:
   persist: false
-transition: slide-left
 title: Supabaseの紹介
+colorSchema: dark
 fonts:
-  # basically the text
-  sans: 'Robot'
-  # use with `font-serif` css class from windicss
-  serif: 'Noto Sans Japanese'
-  # for code blocks, inline code, etc.
-  mono: 'Fira Code'
+  sans: Noto Sans Japanese
+  serif: Roboto Slab
+  mono: Fira Code
 ---
 
 # Supabaseの紹介
@@ -35,10 +31,13 @@ fonts:
   </span>
 </div>
 
----
-transition: fade-out
----
+<!--
+The last comment block of each slide will be treated as slide notes. It will be visible and editable in Presenter Mode along with the slide. [Read more in the docs](https://sli.dev/guide/syntax.html#notes)
+-->
 
+---
+transition: fade-out 
+---
 
 <div class="flex pb-5">
   <div class="px-5">
