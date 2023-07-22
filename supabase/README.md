@@ -1,11 +1,14 @@
-# Welcome to [Slidev](https://github.com/slidevjs/slidev)!
+# Supabaseの紹介
 
-To start the slide show:
+## ローカル起動
 
-- `npm install`
-- `npm run dev`
-- visit http://localhost:3030
+```bash
+yarn install
+yarn dev
+```
 
-Edit the [slides.md](./slides.md) to see the changes.
+## PDF 作成
 
-Learn more about Slidev on [documentations](https://sli.dev/).
+```bash
+yarn slidev export --per-slide --with-clicks
+```

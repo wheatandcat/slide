@@ -410,10 +410,44 @@ layout: default
 
 - 簡単にローカル環境が構築できる
   - 参考: [Supabaseのローカル開発環境構築](https://zenn.dev/razokulover/articles/db984ebfcf4bf6)
+- DB操作の基本APIを自動生成してくれる
+  - 参考 [Serverless APIs](https://supabase.com/docs/guides/api)
 - リアルタイムリスナーをサポート
   - 参考: [Supabase JSのリアルタイムリスナーを使ってみる](https://zenn.dev/k_kind/articles/supabase-realtime-postgres)
 - 有料版なら自動でバックアップを取ってくれる
   - 参考: [Pricing & fees | Supabase](https://supabase.com/pricing)
+
+
+<style>
+ul {
+  padding-left: 1rem;
+  margin-top: 0.1rem;
+}
+li {
+  @apply font-500;
+  font-size:1.15rem;
+}
+a {
+  color: #84b9cb;
+  @apply font-500;
+}
+</style>
+
+---
+layout: default
+---
+
+# その他の機能紹介
+
+## Storage
+
+ - 画像、ビデオ、テキスト等のファイルが保存できる
+ - セキュリティポリシーを設定することで、アクセス制限が可能
+ - コンソール画面からバケットに対してアップロードできるファイルサイズや、ファイル形式を制限できる
+
+## Edge Functions
+ - FaaS
+ - TypeScript、Deno、Wasmをサポート
 
 <style>
 ul {
@@ -431,232 +465,91 @@ a {
 </style>
 
 
-
----
-class: px-20
 ---
 
-# Themes
+# 実装
 
-Slidev comes with powerful theming support. Themes can provide styles, layouts, components, or even configurations for tools. Switching between themes by just **one edit** in your frontmatter:
+ - 以下のPRで実装している
+   - [supabaseでログイン + データ同期機能を追加 by wheatandcat](https://github.com/wheatandcat/MarkyLinky/pull/16)
+ - デモで以下を紹介
+   - ログイン画面
+   - データ同期
 
-<div grid="~ cols-2 gap-2" m="-t-2">
-
-```yaml
----
-theme: default
----
-```
-
-```yaml
----
-theme: seriph
----
-```
-
-<img border="rounded" src="https://github.com/slidevjs/themes/blob/main/screenshots/theme-default/01.png?raw=true">
-
-<img border="rounded" src="https://github.com/slidevjs/themes/blob/main/screenshots/theme-seriph/01.png?raw=true">
-
-</div>
-
-Read more about [How to use a theme](https://sli.dev/themes/use.html) and
-check out the [Awesome Themes Gallery](https://sli.dev/themes/gallery.html).
-
----
-preload: false
----
-
-# Animations
-
-Animations are powered by [@vueuse/motion](https://motion.vueuse.org/).
-
-```html
-<div
-  v-motion
-  :initial="{ x: -80 }"
-  :enter="{ x: 0 }">
-  Slidev
-</div>
-```
-
-<div class="w-60 relative mt-6">
-  <div class="relative w-40 h-40">
-    <img
-      v-motion
-      :initial="{ x: 800, y: -100, scale: 1.5, rotate: -50 }"
-      :enter="final"
-      class="absolute top-0 left-0 right-0 bottom-0"
-      src="https://sli.dev/logo-square.png"
-    />
-    <img
-      v-motion
-      :initial="{ y: 500, x: -100, scale: 2 }"
-      :enter="final"
-      class="absolute top-0 left-0 right-0 bottom-0"
-      src="https://sli.dev/logo-circle.png"
-    />
-    <img
-      v-motion
-      :initial="{ x: 600, y: 400, scale: 2, rotate: 100 }"
-      :enter="final"
-      class="absolute top-0 left-0 right-0 bottom-0"
-      src="https://sli.dev/logo-triangle.png"
-    />
-  </div>
-
-  <div
-    class="text-5xl absolute top-14 left-40 text-[#2B90B6] -z-1"
-    v-motion
-    :initial="{ x: -80, opacity: 0}"
-    :enter="{ x: 0, opacity: 1, transition: { delay: 2000, duration: 1000 } }">
-    Slidev
-  </div>
-</div>
-
-<!-- vue script setup scripts can be directly used in markdown, and will only affects current page -->
-<script setup lang="ts">
-const final = {
-  x: 0,
-  y: 0,
-  rotate: 0,
-  scale: 1,
-  transition: {
-    type: 'spring',
-    damping: 10,
-    stiffness: 20,
-    mass: 2
-  }
+<style>
+ul {
+  padding-left: 1rem;
+  margin-top: 0.1rem;
 }
-</script>
+li {
+  @apply font-500;
+  font-size:1.15rem;
+}
+a {
+  color: #84b9cb;
+  @apply font-500;
+}
+</style>
 
-<div
-  v-motion
-  :initial="{ x:35, y: 40, opacity: 0}"
-  :enter="{ y: 0, opacity: 1, transition: { delay: 3500 } }">
-
-[Learn More](https://sli.dev/guide/animations.html#motion)
-
-</div>
-
----
-
-# LaTeX
-
-LaTeX is supported out-of-box powered by [KaTeX](https://katex.org/).
-
-<br>
-
-Inline $\sqrt{3x-1}+(1+x)^2$
-
-Block
-$$
-\begin{array}{c}
-
-\nabla \times \vec{\mathbf{B}} -\, \frac1c\, \frac{\partial\vec{\mathbf{E}}}{\partial t} &
-= \frac{4\pi}{c}\vec{\mathbf{j}}    \nabla \cdot \vec{\mathbf{E}} & = 4 \pi \rho \\
-
-\nabla \times \vec{\mathbf{E}}\, +\, \frac1c\, \frac{\partial\vec{\mathbf{B}}}{\partial t} & = \vec{\mathbf{0}} \\
-
-\nabla \cdot \vec{\mathbf{B}} & = 0
-
-\end{array}
-$$
-
-<br>
-
-[Learn more](https://sli.dev/guide/syntax#latex)
 
 ---
 
-# Diagrams
+## まとめ
 
-You can create diagrams / graphs from textual descriptions, directly in your Markdown.
+<br/>
 
-<div class="grid grid-cols-3 gap-10 pt-4 -mb-6">
+ - Supabaseは個人開発で使うには、かなり良いサービス
+   - コンソールが使いやすい
+   - セキュリティ周りも、わかりやすい
+   - 従量制課金では無いので、コストも安心
+ - プロダクトで使う場合は制限周りを確認する必要がある
+   - [Pricing & fees | Supabase](https://supabase.com/pricing)
 
-```mermaid {scale: 0.5}
-sequenceDiagram
-    Alice->John: Hello John, how are you?
-    Note over Alice,John: A typical interaction
-```
-
-```mermaid {theme: 'neutral', scale: 0.8}
-graph TD
-B[Text] --> C{Decision}
-C -->|One| D[Result 1]
-C -->|Two| E[Result 2]
-```
-
-```mermaid
-mindmap
-  root((mindmap))
-    Origins
-      Long history
-      ::icon(fa fa-book)
-      Popularisation
-        British popular psychology author Tony Buzan
-    Research
-      On effectivness<br/>and features
-      On Automatic creation
-        Uses
-            Creative techniques
-            Strategic planning
-            Argument mapping
-    Tools
-      Pen and paper
-      Mermaid
-```
-
-```plantuml {scale: 0.7}
-@startuml
-
-package "Some Group" {
-  HTTP - [First Component]
-  [Another Component]
+<style>
+a {
+  color: #84b9cb;
+  @apply font-500;
 }
 
-node "Other Groups" {
-  FTP - [Second Component]
-  [First Component] --> FTP
-}
-
-cloud {
-  [Example 1]
+p {
+  margin: 1rem !important;
 }
 
 
-database "MySql" {
-  folder "This is my folder" {
-    [Folder 3]
-  }
-  frame "Foo" {
-    [Frame 4]
-  }
+
+span {
+  font-size:0.5rem;
+  line-height: 0.5rem !important;
 }
 
 
-[Another Component] --> [Example 1]
-[Example 1] --> [Folder 3]
-[Folder 3] --> [Frame 4]
 
-@enduml
-```
+ul {
+  padding-left: 1rem;
+  margin-top: 0.1rem;
+}
 
-</div>
-
-[Learn More](https://sli.dev/guide/syntax.html#diagrams)
-
----
-src: ./pages/multiple-entries.md
-hide: false
----
+li {
+  @apply font-500;
+  margin-top: 0.25rem;
+}
+</style>
 
 ---
 layout: center
-class: text-center
+class: "text-center"
 ---
 
-# Learn More
+<div class="text-2xl font-700 text-enter w-full">
+  <div>ご清聴ありがとうございました 🎉 </div>
+</div>
 
-[Documentations](https://sli.dev) · [GitHub](https://github.com/slidevjs/slidev) · [Showcases](https://sli.dev/showcases.html)
+<style>
+.main {
+  display: flex;
+  height: 80%;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  color: #46AE35;
+}
+</style>
