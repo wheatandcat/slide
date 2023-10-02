@@ -516,7 +516,16 @@ li {
 
 <br/>
 
-- ここはデモしながら紹介
+- [デモURL](https://oomaka.vercel.app/)
+- ※以下、デモしながら紹介
+- DB設計はPrismaで[prisma/schema.prisma](https://github.com/wheatandcat/OOMAKA/blob/06a462c7a54007e1294d0f0387f5862090343038/prisma/schema.prisma#L24)の通りに定義
+- Next.jsでAPI実装は[API Routes](https://nextjs-ja-translation-docs.vercel.app/docs/api-routes/introduction)を使用
+- tRPC + Prismaは[src/server/api/routers/url.ts](https://github.com/wheatandcat/OOMAKA/blob/86e884416e655b3c8438588491b60d79e5849d3b/src/server/api/routers/url.ts#L1)のように実装
+- フロントエンド側の実装は以下の通り
+  - 読み込みは[src/pages/index.tsx](https://github.com/wheatandcat/OOMAKA/blob/ec72b9ac86e99e80ff3ab7a9e7ffafbf9fb4c1b0/src/pages/index.tsx#L14-L16)のようにして取得
+  - 書き込みは[src/pages/index.tsx](https://github.com/wheatandcat/OOMAKA/blob/ec72b9ac86e99e80ff3ab7a9e7ffafbf9fb4c1b0/src/pages/index.tsx#L24-L32)のようにして取得
+- ログインは[src/pages/index.tsx](https://github.com/wheatandcat/OOMAKA/blob/ec72b9ac86e99e80ff3ab7a9e7ffafbf9fb4c1b0/src/pages/index.tsx#L11)で、サクッと実装できる
+
 
 <style>
 a {
@@ -593,10 +602,8 @@ li {
 </style>
 
 ---
-
 layout: center
 class: "text-center"
-
 ---
 
 <div class="text-2xl font-700 text-enter w-full">

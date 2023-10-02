@@ -1,4 +1,4 @@
-# tRPCの紹介
+# T3 Stack + Supabaseでアプリ作ってみる
 
 ## ローカル起動
 
