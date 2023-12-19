@@ -432,7 +432,12 @@ layout: default
 
 ## まとめ
 
- - ここは明日書く
+ - App Routerは**RSC**を前提としたルーティング機構になっている
+ - **RSC**を使用するとデータ取得周りはシンプルに実装できる
+ - ただ、App Routerはフロントエンド界隈では賛否両論で、当面Web文脈では議論されていきそう
+   - [一休レストランで Next.js App Router から Remix に乗り換えた話](https://user-first.ikyu.co.jp/entry/2023/12/15/093427)
+   - 元々Next.jsはWeb標準のAPIに準拠していないことが問題視されていて、App Routerでより、その点が強まった
+   - 逆に[Remix](https://remix.run/)はWeb標準のAPIに準拠した思想で実装されているので対象的になっている
 
 <style>
 ul {
