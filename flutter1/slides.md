@@ -5,11 +5,11 @@ background:
 highlighter: shiki
 lineNumbers: false
 info: |
-  ## Flutter × NestJS × GraphQLでアプリを作ってみる①
+  ## Flutter × GraphQLでアプリを作ってみる
 drawings:
   persist: false
 title: |
-  Flutter × NestJS × GraphQLでアプリを作ってみる①
+  Flutter × GraphQLでアプリを作ってみる
 colorSchema: dark
 fonts:
   sans: Noto Sans Japanese
@@ -17,7 +17,7 @@ fonts:
   mono: Fira Code
 ---
 
-### Flutter × NestJS × GraphQLでアプリを作ってみる①
+### Flutter × GraphQLでアプリを作ってみる
 
 <div class="flex justify-center pt-10">
   <img
@@ -107,32 +107,6 @@ a {
 }
 </style>
 
-
----
-layout: default
----
-
-# NestJSとは？
-
-- Node.jsサーバーサイドアプリケーションフレームワーク
-- TypeScriptで作成
-- デコレータを使用することで、最小限のコードで効率的な開発が行える
-
-
-<style>
-ul {
-  padding-left: 1rem;
-  margin-top: 0.1rem;
-}
-li {
-  @apply font-300;
-  font-size:1.15rem;
-}
-a {
-  color: #84b9cb;
-  @apply font-300;
-}
-</style>
 
 
 ---
@@ -324,7 +298,7 @@ layout: default
 
 Flutterでも[graphql_codegen](https://pub.dev/documentation/graphql_codegen/latest/)を導入すれば型安全でGraphQLのクエリを実行できるので手順を紹介
 
-まず、backendGraphQLスキーマファイルを作成
+まずは、backendからGraphQLのスキーマファイルを取得
 
 ```graphql {all}
 type Query {
@@ -362,171 +336,21 @@ p {
 </style>
 
 
-
-
 ---
 layout: default
 ---
 
-# Next Authで認証を実装
+# FlutterとGraphQLの連携②
 
-各プロバイダーの設定は以下のように行う
+次にFlutterからアクセスするためのクエリを作成
 
-```ts {all|3-6|7-10|all}
-export const authOptions: NextAuthOptions = {
-  providers: [
-    DiscordProvider({
-      clientId: env.DISCORD_CLIENT_ID,
-      clientSecret: env.DISCORD_CLIENT_SECRET,
-    }),
-    AppleProvider({
-      clientId: env.APPLE_ID,
-      clientSecret: env.APPLE_SECRET,
-    }),
-    GoogleProvider({
-      clientId: env.GOOGLE_CLIENT_ID,
-      clientSecret: env.GOOGLE_CLIENT_SECRET,
-    }),
-  ],
-```
-
- - [Google | NextAuth.js](https://next-auth.js.org/providers/google)
-
-<style>
-ul {
-  padding-left: 1rem;
-  margin-top: 0.1rem;
-}
-li {
-  @apply font-300;
-  font-size:1.15rem;
-}
-a {
-  color: #84b9cb;
-  @apply font-300;
-}
-
-p {
-  color: #fff;
-  opacity: 1;
-}
-</style>
-
-
-
----
-transition: slide-up
-level: 2
----
-
-# ログイン画面の実装
-
-プロバイダーの設定が完了したら、**signIn**のメソッドをコールするだけで以下の画面
-
-```ts {all}
-import { signIn, signOut, useSession } from "next-auth/react";
-
-<button onClick={() => signIn("credentials", {callbackUrl: "/",})}>
-  ログイン
-</button>
-```
-
-<div class="flex justify-center pt-3">
-  <img
-    class="w-80 pt-2"
-    src="/screen001.png"
-  />
-</div>
-
-
-<style>
-ul {
-  padding-left: 1rem;
-  margin-top: 0.1rem;
-}
-li {
-  @apply font-300;
-  font-size:1.15rem;
-}
-a {
-  color: #84b9cb;
-  @apply font-300;
-}
-
-p {
-  color: #fff;
-  opacity: 1;
-}
-</style>
-
----
-
-# ログイン画面のカスタマイズ
-
-ログイン画面をカスタマイズしたい場合は以下を追加することで可能
-
-```ts {all}
-export const authOptions: NextAuthOptions = {
-  pages: {
-    signIn: "/auth/signin",
-    error: "/auth/signin",
-  },
-```
-
-<div class="flex justify-center pt-3">
-  <img
-    class="w-80 pt-2"
-    src="/screen002.png"
-  />
-</div>
-
-
-<style>
-ul {
-  padding-left: 1rem;
-  margin-top: 0.1rem;
-}
-li {
-  @apply font-300;
-  font-size:1.15rem;
-}
-a {
-  color: #84b9cb;
-  @apply font-300;
-}
-
-p {
-  color: #fff;
-  opacity: 1;
-}
-</style>
-
----
-layout: default
----
-
-# 認証実装①（クライアントサイドで取得）
-
-認証したユーザーの値は以下で取得可能
-
-```ts {all|1,4|6-8|12-15|all}
-import { signIn } from "next-auth/react";
-
-function Home() {
-  const { data: session } = useSession();
-
-  if (!session) {
-    return (<div>ログイン前です</div>)
+```graphql {all}
+query Category($id: Int!) {
+  category(id: $id) {
+    id
+    name
+    order
   }
-
-  return (
-    <div>
-      <div>ログイン後です</div>
-      <div>{session.user.id}</div>
-      <div>{session.user.name}</div>
-      <div>{session.user.email}</div>
-    </div>
-  )
 }
 ```
 
@@ -545,33 +369,80 @@ a {
 }
 
 p {
-  color: #fff;
-  opacity: 1;
+  color: #fff !important;
+  opacity: 1 !important;
 }
 </style>
+
+
 
 ---
 layout: default
 ---
 
-# 認証実装②（SSRで認証）
+# FlutterとGraphQLの連携③
 
-SSRで認証したい場合は以下のように実装
+[graphql_codegen](https://pub.dev/documentation/graphql_codegen/latest/)の初期設定をして以下のコマンドを実行
 
-```ts {all|5-10|13|all}
-import { signIn } from "next-auth/react";
-import { type GetServerSideProps } from "next";
-import { getServerAuthSession } from "~/server/auth";
+```bash
+dart run build_runner build
+```
 
-export const getServerSideProps: GetServerSideProps = async (ctx) => {
-  const session = await getServerAuthSession(ctx);
-  return {
-    props: { session },
-  };        
-};
+以下のファイルが生成される
+ - [lib/graphql/category.gql.dart](https://github.com/wheatandcat/stock-keeper/blob/2301e94bdc4f7e5afa8889aa2d7eae9cad32eb91/lib/graphql/category.gql.dart)
 
-function Home() {
-  const { data: session } = useSession();
+<style>
+ul {
+  padding-left: 1rem;
+  margin-top: 0.1rem;
+}
+li {
+  @apply font-300;
+  font-size:1.15rem;
+}
+a {
+  color: #84b9cb;
+  @apply font-300;
+}
+
+p {
+  color: #fff !important;
+  opacity: 1 !important;
+}
+</style>
+
+
+---
+layout: default
+---
+
+# FlutterとGraphQLの連携④
+
+③で生成したファイルを参照して、以下のようにクエリを実行して値を取得
+
+```dart {all|8-9|13-15|17-20|all}
+class Items extends HookWidget {
+  final int id;
+
+  const Items({super.key, required this.id});
+
+  @override
+  Widget build(BuildContext context) {
+    final queryResult = useQuery$Category(
+        Options$Query$Category(variables: Variables$Query$Category(id: id)));
+
+    final result = queryResult.result;
+
+    if (result.isLoading) {
+      return const Text('Loading...');
+    }
+
+    final Query$Category$category category = Query$Category$category.fromJson(
+        result.data!['category'] as Map<String, dynamic>);
+
+    return Text(category.name);
+  }
+}
 ```
 
 <style>
@@ -589,141 +460,24 @@ a {
 }
 
 p {
-  color: #fff;
-  opacity: 1;
+  color: #fff !important;
+  opacity: 1 !important;
 }
 </style>
+
+
 
 
 ---
 layout: default
 ---
 
-# 認証実装③（RSCで認証）
-
-RSCで認証したい場合は以下のように実装<br/>
-現状はこれが最速の認証方法
-
-```ts {all|4-5|all}
-import { getServerSession } from "next-auth/next"
-import { authOptions } from "~/server/auth";
-
-export default async function Home() {
-  const session = await getServerSession(authOptions)
-```
-
-<style>
-ul {
-  padding-left: 1rem;
-  margin-top: 0.1rem;
-}
-li {
-  @apply font-300;
-  font-size:1.15rem;
-}
-a {
-  color: #84b9cb;
-  @apply font-300;
-}
-
-p {
-  color: #fff;
-  opacity: 1;
-}
-</style>
-
-
----
-layout: default
----
-
-# tRPCでSSRを実装①
-
-T3 StackではtRPCでデータ取得を行っている<br/>
-SSRに対応するには、以下のoptionを**true**にするだけでOK 👌
-
-```ts {all|9}
-import { createTRPCNext } from "@trpc/next";
-
-export const api = createTRPCNext<AppRouter>({
-  /**
-   * Whether tRPC should await queries when server rendering pages.
-   *
-   * @see https://trpc.io/docs/nextjs#ssr-boolean-default-false
-   */
-  ssr: true,
-```
-
-<style>
-ul {
-  padding-left: 1rem;
-  margin-top: 0.1rem;
-}
-li {
-  @apply font-300;
-  font-size:1.15rem;
-}
-a {
-  color: #84b9cb;
-  @apply font-300;
-}
-
-p {
-  color: #fff;
-  opacity: 1;
-}
-</style>
-
----
-layout: default
----
-
-# tRPCでSSRを実装②
-
-**ssr:true**にするとtRPCでアクセスしている箇所をサーバーサイドで**prefetch**する挙動になる<br/>以下のようなコードを実行した場合、クライアントサイドではキャッシュから取得するの動作になる
-
-```ts {all|5|all}
-function Schedule() {
-  const router = useRouter();
-  const { id } = router.query;
-
-  const schedules = api.schedule.fetch.useQuery({ urlId: String(id) });
-```
-
-- [Server-Side Rendering | tRPC](https://trpc.io/docs/client/nextjs/ssr)
-
-<style>
-ul {
-  padding-left: 1rem;
-  margin-top: 0.1rem;
-}
-li {
-  @apply font-300;
-  font-size:1.15rem;
-}
-a {
-  color: #84b9cb;
-  @apply font-300;
-}
-
-p {
-  color: #fff;
-  opacity: 1;
-}
-</style>
-
----
-layout: default
----
-
-# 補足: スライドで参照している開発物の紹介
+# 今回作成したリポジトリの紹介
 
  - Repository
-   - [OOMAKA](https://github.com/wheatandcat/OOMAKA)
- - サービスURL
-   - [OOMAKA | 年間スケジュール、まとめるなら](https://oomaka.vercel.app/)
- - SSRしている画面を軽くDEMO
-   
+   - [wheatandcat/stock-keeper](https://github.com/wheatandcat/stock-keeper)
+   - [wheatandcat/stock-keeper-backend](https://github.com/wheatandcat/stock-keeper-backend)
+
 
 <style>
 ul {
@@ -745,14 +499,59 @@ p {
 }
 </style>
 
+
+---
+
+## React Nativeとの比較
+
+
+まだ、Flutterの方はざっくりな開発しかしていないが、現状の所感での比較を記載
+  - パフォーマンスチューニングのやりやすさ
+    - Flutter >> React Native
+  - 運用/保守コスト
+    - Flutter >> React Native 
+  - UI/システムの柔軟性
+    - React Native > Flutter
+  - 開発のとっつきやすさ
+    - Expo >>> Flutter > React Native
+  - エコシステムの充実度/熟練度
+    - React Native >>> Flutter
+  - backendとの連携
+    - React Native > Flutter
+
+<style>
+ul {
+  padding-left: 1rem;
+  margin-top: 0.1rem;
+}
+li {
+  @apply font-300;
+  font-size:1rem;
+}
+a {
+  color: #84b9cb;
+  @apply font-300;
+}
+
+p {
+  color: #fff;
+  opacity: 1;
+}
+</style>
 
 ---
 
 ## まとめ
 
- - T3 Stackを使うとSSR周りは、かなり楽
- - **getServerSideProps**でゴニョゴニョする必要がなくなって開発が捗る
- - Next Authは現状はNext.js専用だが、今後のロードマップで名前をAuthに変更して別フレームワークでも使用可能になる予定
+ - よくFlutterとReact Nativeの比較がされる記事を見かけていたが、Flutterは触ってなかったので、あまりピンと来てなかったが、今回の開発でその辺が把握できた
+ - dartは簡単なので、たぶんReact経験者なら、すぐに慣れると思う 
+ - Flutterの魅力はGoogle独自のWidgetを使用することで、プラットフォーム毎でUIに差分が発生しづらく保守コストが少なく済むところ
+ - React Nativeはパフォーマンスチューニングのコーディング難易度が非常に高いので、その辺はFlutterの方が強そう
+ - エコシステムの充実度はnpmの圧倒的な数 & 完成度の高いパッケージが多いので、この辺はReact Nativeの方に軍配が上がる
+ - GraphQLの連携周りも React Nativeの方がサポートが充実している
+ - 初期開発の充実度は[Expo](https://expo.dev/)が最も優れており、アプリリリースまではコストは一番低そう
+ - 今後増えてくる[tRPC](https://trpc.io/)のサポートに関してはFultterだと言語の壁があり、もしサポートされてもファースト扱いにはならないので、この辺はReact Nativeの方が有利そう
+ - 思った以上に良い勝負をしているので、今後の動向が楽しみ 
 
 <style>
 ul {
@@ -761,7 +560,7 @@ ul {
 }
 li {
   @apply font-300;
-  font-size:1.15rem;
+  font-size:1rem;
 }
 a {
   color: #84b9cb;
