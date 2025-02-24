@@ -5,11 +5,11 @@ background:
 highlighter: shiki
 lineNumbers: false
 info: |
-  ## 1年半放置したExpo制アプリを最新化する
+  ## 1年半放置したExpo制アプリを最新化してみた
 drawings:
   persist: false
 title: |
-    1年半放置したExpo制アプリを最新化する
+    1年半放置したExpo制アプリを最新化してみた
 colorSchema: dark
 fonts:
   sans: Noto Sans Japanese
@@ -117,13 +117,17 @@ a {
 
 # あらすじ②
 
-
-
  - 技術スタック
-  - [Expo](https://expo.dev/)
-  - ログイン
-    - iOS: 
-    - Android: 
+   - [Expo](https://expo.dev/)
+ - Expoとは？
+   - React Nativeを使用したアプリ開発を支える代表的なエコシステム
+   - Expo SDKを使用することで、本来必要な開発をかなり省略できる
+     - 省略できる開発の例
+       - 公式がBuild環境のサーバーを提供
+       - テストアプリの配布機能をサポート
+       - Push通知等のプラットフォーム固有の開発をExpo側で抽象化して提供
+       - etc...
+   - 現在はReact Nativeの公式でもExpoを使用した開発を推奨している
 
 <style>
 ul {
@@ -177,7 +181,6 @@ p {
 </style>
 
 
-
 ---
 layout: fact
 class: "text-center"
@@ -194,14 +197,20 @@ class: "text-center"
   align-items: center;
   color: #46AE35;
 }
+
+h2 {
+  color:rgb(182, 45, 45) !important;
+  font-weight: 700 !important;
+}
 </style>
 
 ---
 
-# 🤮 アプリのローカルでビルドが出来なくなる
+# 🤮 ローカルでビルドが出来なくなる
   - Expo SDK 48 → 52までの間で[EAS Build](https://docs.expo.dev/build/introduction/)の対応が必須になった
-  - 元々あったExpo Goベースの開発はあくまでデバッグ用という立ち位置になりネイティブ周りの機能を修正したアプリはビルドできなくなった
-  - Expo SDK 48の時点で本番ビルドはEAS Buildに移行済みだったが、EAS Buildで実行してもエラーになり、ローカルでもビルドできないので、そもそもデバッグできない状態になっていた
+  - 元々あったExpo Goベースの開発はあくまでデバッグ用という立ち位置になり、ネイティブ周りの機能を修正したアプリはビルドできなくなった
+  - Expo SDK 48の時点で本番ビルドはEAS Buildに移行済みだったが、EAS Buildで実行してもエラーになり、ローカルでもビルドできない
+  - そもそもデバッグできない状態になり、詰みの状態が発生
 
 <style>
 ul {
@@ -218,7 +227,7 @@ a {
 }
 
 p {
-  color: #fff !important;
+  color: red !important;
   opacity: 1 !important;
 }
 </style>
@@ -229,6 +238,7 @@ p {
 # 😭 Expoの一部ライブラリが非推奨になる
   - Expo SDK 48 → 52までの間で[expo-auth-session](https://docs.expo.dev/versions/latest/sdk/auth-session/)の`expo-auth-session/providers/google`が非推奨になった
   - 具体的には、以前まではExpo更新のライブラリのみGoogleログインが可能だったが、出来なくなり代替で[@react-native-google-signin/google-signin](https://react-native-google-signin.github.io/docs/setting-up/expo)の使用が必須になった
+  - その他の一部ライブラリでも廃止、仕様変更が発生がしていた
 
 <style>
 ul {
@@ -254,9 +264,12 @@ p {
 ---
 
 # 😭 ナビゲーションライブラリのトレンドが変わる
-  - 元々、[react-navigation](https://reactnavigation.org/docs/getting-started)が最もよく使われているライブラリだった
-  - 現在は[expo-router](https://docs.expo.dev/versions/latest/sdk/router/)という公式が提供しているライブラリが推奨されている
+  - 以前は[react-navigation](https://reactnavigation.org/docs/getting-started)が最もよく使われているライブラリだった
+  - 現在は[expo-router](https://docs.expo.dev/versions/latest/sdk/router/)が公式が提供しているライブラリとして推奨されている
   - しかも、expo-routerは`ファイルベースルーティング`を採用しているので、ディレクトリ構造の変更も必要
+  - ファイルベースルーティングとは？
+    - ディレクトリ構造が、そのまま画面のルーティングに反映される方式
+    - Next.jsやNuxt.js等の採用されている方式
 
 <style>
 ul {
@@ -284,8 +297,8 @@ p {
 ---
 
 # 🙁 Reactのバージョンが変わり、非推奨が発生
-  - Expo SDK 48 → 52の移行でReact、React Nativeのバージョンも上がった
-  - `defaultProps`の非推奨化など警告がでるようになった
+  - Expo SDK 48 → 52の移行でReact、React Nativeのバージョンが上がった
+  - `defaultProps`の非推奨化など警告がでるようになり、一部コード修正が発生
 
 <style>
 ul {
@@ -310,10 +323,16 @@ p {
 ---
 
 # 🤔 ディレクトリ構造のトレンドが変わる
-  - アプリを作成していた頃は、フロントエンドのディレクトリ構造は`Atomic Design`が流行っていた
+  - 以前はフロントエンドのディレクトリ構造は[Atomic Design](https://atomicdesign.bradfrost.com/chapter-2/)が流行っていた
   - 現状のトレンドは以下
     - [Feature Sliced Design](https://feature-sliced.design/)
-    - [Screaming Architecture](https://dev.to/profydev/screaming-architecture-evolution-of-a-react-folder-structure-4g25)
+    - [Screaming Architecture](https://dev.to/profydev/screaming-architecture-evolution-of-a-react-folder-structure-4g25)（日本だとFeature型と呼ばれている事が多い）
+  - トレンドが変わった理由
+    - Atomic Designの定義が複雑でチーム開発でうまく回せないケースが多い
+    - 後からの開発でコンポーネントの機能拡張した際に、ディレクトリ構造が変わる可能性があり、長期の開発では管理が難しくなる
+    - 各画面との依存関係がわかりにくい等々
+
+
 
 <style>
 ul {
@@ -340,6 +359,11 @@ p {
 # 🤔 Lint、Formatterのトレンドが変わる
   - 以前は[ESLint](https://eslint.org/)と[Prettier](https://prettier.io/)を使っていた
   - 現在は[Biome](https://biomejs.dev/ja/)がトレンド
+  - トレンドが変わった理由
+    - 長期の開発をしていくとESLint & Prettierの設定の複雑になっていくケースが発生しやすい
+    - ESLint & Prettierを使用するとPCに負荷がかかり開発に支障が出るケースがある
+    - よりシンプル且つ、一括管理できるBiomeの方が採用されるようになった
+
 
 <style>
 ul {
@@ -363,9 +387,14 @@ p {
 
 ---
 
-# 🤔 パッケージマネージャのトレンドが変わる
-  - 以前は[yarn](https://yarnpkg.com/)を使っていた
-  - 現在は[pnpm](https://pnpm.io/)がトレンド
+# 🤔 使っていたライブラリが開発停止になる
+  - 開発時はグローバルな状態管理は[Recoil](https://github.com/facebookexperimental/Recoil)が最もよく使われていた
+  - Facebookが開発しているライブラリで、ほぼ公式扱いだったが...
+  - その後の大規模レイオフで全開発者が解雇され開発停止になった
+  - React 19では動作しないため、今後の移行が必須
+  - 今後は[Jotai](https://jotai.org/)が使われていきそう
+
+
 
 <style>
 ul {
@@ -393,7 +422,7 @@ layout: fact
 class: "text-center"
 ---
 
-## 問題を解決するために、アプリを最新化してみた
+## このままでは開発できないので、諸々最新化してみる
 
 <style>
 .main {
@@ -416,10 +445,13 @@ class: "text-center"
  - Expo SDK: 48 → 52
  - ナビゲーションライブラリ: react-navigation → expo-router
  - ディレクトリ構造: Atomic Design → Feature型
- - Lint、Formatter: ESLint → Biome
+ - Lint、Formatter: ESLint、Prettier → Biome
  - パッケージマネージャ: yarn → pnpm
+ - ※まだReact19まで猶予があるので、**Recoil**の移行は一旦後回し
 
- - リポジトリ
+<br/>
+
+ ■ リポジトリ
    - 更新前: [リンク](https://github.com/wheatandcat/memoir/tree/3cc1db4959b54415195158fd3185440653595bb8)
    - 更新後: [リンク](https://github.com/wheatandcat/memoir/tree/17dc876e90ab3b243fe39ccb1af52bad600d2841)
 
@@ -447,19 +479,38 @@ p {
 
 
 ---
+clicks: 1
+---
 
 # 起動まで①
 
-Expoには以下のコマンド
+Expoには、バージョンアップ時のマイグレーションを自動で行うコマンドが用意されている
+
+
+以下のコマンドでSDKの最新化 & ライブラリのバージョンの依存関係を更新
 
 ```bash
 $ npx expo install expo@latest
 $ npx expo install --fix
 ```
 
+以下のコマンドでドキュメントに記載されているチェックを行い、NGが出ている箇所を修正
+
 ```bash
 $ npx expo-doctor
 ```
+
+ - 参考
+   - [Expo Doctor](https://docs.expo.dev/develop/tools/#expo-doctor)
+
+
+<br>
+<div v-click="1" v-if="$slidev.nav.clicks === 1">
+
+ただ今回のケースでは、これをやってもビルドが通らなかった 😢 <br/>
+なので、新規でExpoのプロジェクトを作成して徐々に既存のコードを移行する手法で対応
+
+</div>
 
 <style>
 ul {
@@ -486,8 +537,10 @@ p {
 
 # 起動まで②
 
-一旦、eas buildは諦め、Expo Goで起動できるようにして試してみる
+以下のページを参考に、Expo Routerのサンプルアプリを作成
+ - [Install Expo Router - Expo Documentation](https://docs.expo.dev/router/installation/)
 
+ここから徐々に既存のコードを移行していった
 
 <style>
 ul {
@@ -515,7 +568,29 @@ p {
 
 ---
 
-# ディレクトリ構造
+# ディレクトリ構造①
+
+
+■ 以前のディレクトリ構造
+```bash {all|3-15|4-9}
+.
+├── assets
+└── src
+    ├── components
+    │   ├── atoms
+    │   ├── molecules
+    │   ├── organisms
+    │   ├── pages
+    │   └── templates
+    ├── containers
+    ├── hooks
+    ├── img
+    ├── lib
+    ├── queries
+    └─ store
+```
+
+
 
 <style>
 ul {
@@ -537,9 +612,36 @@ p {
 }
 </style>
 
+
 ---
 
-# Googleログイン
+# ディレクトリ構造②
+
+
+■ 現在のディレクトリ構造
+```bash {all|2-4|8-10|12-17}
+.
+├── app
+│   └── (app)
+│       └── search
+├── assets
+│   ├── fonts
+│   └── img
+├── components
+│   ├── elements
+│   └── layouts
+├── containers
+├── features
+│   ├── home
+│   │   └── components
+│   └── search
+│       ├── components
+│       └── hooks
+├── hooks
+├── lib
+├── queries
+└── store
+```
 
 <style>
 ul {
@@ -565,6 +667,13 @@ p {
 ---
 
 # Lint、Formatterの移行
+
+ - 以下のページを参考に[Biome](https://biomejs.dev/)に移行
+   - [Getting Started | Biome](https://biomejs.dev/guides/getting-started/)
+ - 今回のコードでは軽微な修正のみだったので基本は移行後に、以下のコマンドで自動で修正できた
+   - ```bash
+     $ npx @biomejs/biome check --write ./
+     ```
 
 <style>
 ul {
@@ -594,6 +703,8 @@ class: "text-center"
 
 # デモ
 
+## 現在の動作するところまで確認
+
 <style>
 .main {
   display: flex;
@@ -611,9 +722,10 @@ layout: default
 ---
 
 # まとめ
-- Expoのアプリの開発を1年半放置すると、結構な地獄になる
-- フレームワークとしての強みはかなりあるが反面こういうデメリットも大きい
-
+- Expoのアプリの開発を1年半放置すると、結構な地獄になる 
+- 正直、ローカルビルドができなくなるのは想定していなかったので、かなり困った
+- フレームワークとしての強みはかなりあるが、反面フレームワークで強制される部分が大きいので、開発に間を空けすぎると復帰が難しくなる
+- バックエンドと比較してフロントエンドはトレンドの移り変わりが激しいのを再認識した
 
 
 <style>
