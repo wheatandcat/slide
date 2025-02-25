@@ -5,11 +5,11 @@ background:
 highlighter: shiki
 lineNumbers: false
 info: |
-  ## 1年半放置したExpo制アプリを最新化してみた
+  ## 1年半放置したExpo製アプリを最新化してみた
 drawings:
   persist: false
 title: |
-    1年半放置したExpo制アプリを最新化してみた
+    1年半放置したExpo製アプリを最新化してみた
 colorSchema: dark
 fonts:
   sans: Noto Sans Japanese
@@ -17,7 +17,7 @@ fonts:
   mono: Fira Code
 ---
 
-### 1年半放置したExpo制アプリを最新化してみた
+### 1年半放置したExpo製アプリを最新化してみた
 
 <div class="flex justify-center pt-10">
   <img
